@@ -158,7 +158,7 @@ proxy:
 techdocs:
   builder: 'local' # Alternatives - 'external'
   generator:
-    runIn: 'docker' # Alternatives - 'local'
+    runIn: 'local' # Alternatives - 'local'
   publisher:
     type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
@@ -194,6 +194,9 @@ catalog:
     - type: file
       target: ../../examples/entities.yaml
 
+    - type: file
+      target: ../../examples/sonic.yaml
+
     # Local example template
     - type: file
       target: ../../examples/template/template.yaml
@@ -205,6 +208,18 @@ catalog:
       target: ../../examples/org.yaml
       rules:
         - allow: [User, Group]
+
+  
+  providers:
+    github:
+      orgDiscovery:
+        organization: 'optimum-data-analytics-demo'
+        catalogPath: '/catalog-info.yaml'
+        filters:
+          repository: '.*'   # for all repos
+        schedule:
+          frequency: { minutes: 30 }
+          timeout: { minutes: 3 }
 
     ## Uncomment these lines to add more example data
     # - type: url

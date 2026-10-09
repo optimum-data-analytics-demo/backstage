@@ -10,6 +10,10 @@ import { createBackend } from '@backstage/backend-defaults';
 
 const backend = createBackend();
 
+// github plugin
+backend.add(import('@backstage/plugin-catalog-backend-module-github'));
+
+
 backend.add(import('@backstage/plugin-app-backend'));
 backend.add(import('@backstage/plugin-proxy-backend'));
 
