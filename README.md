@@ -197,7 +197,7 @@ grep -qx '.env' .gitignore || echo '.env' >> .gitignore
 cd ~/projects/backstage_app/backstage
 source ~/.venvs/techdocs/bin/activate
 set -a; source .env; set +a
-yarn dev
+yarn start
 ```
 
 Then open **http://localhost:3000**.
