@@ -131,7 +131,16 @@ backend:
       - catalog
       - scaffolder
   # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
-
+  auth:
+    externalAccess:
+      - type: static
+        options:
+          token: ${TECHDOCS_TOKEN}
+          subject: github-actions-techdocs
+        accessRestrictions:
+          - plugin: techdocs
+          - plugin: catalog
+            
 integrations:
   github:
     - host: github.com
@@ -161,6 +170,8 @@ techdocs:
     runIn: 'local' # Alternatives - 'local'
   publisher:
     type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
+    local:
+      publishDirectory: /techdocs
 
 auth:
   # see https://backstage.io/docs/auth/ to learn about auth providers
